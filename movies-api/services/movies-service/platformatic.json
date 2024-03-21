@@ -1,0 +1,25 @@
+{
+  "$schema": "https://platformatic.dev/schemas/v1.30.0/service",
+  "service": {
+    "openapi": true
+  },
+  "watch": true,
+  "plugins": {
+    "paths": [
+      {
+        "path": "./plugins",
+        "encapsulate": false
+      },
+      "./routes"
+    ],
+    "typescript": "{PLT_MOVIES_SERVICE_TYPESCRIPT}"
+  },
+  "clients": [
+    {
+      "schema": "moviesDb/moviesDb.openapi.json",
+      "name": "moviesDb",
+      "type": "openapi",
+      "serviceId": "movies-db"
+    }
+  ]
+}

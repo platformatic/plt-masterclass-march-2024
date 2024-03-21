@@ -1,0 +1,43 @@
+{
+  "$schema": "https://platformatic.dev/schemas/v1.30.0/composer",
+  "composer": {
+    "services": [
+      {
+        "id": "movies-db",
+        "openapi": {
+          "url": "/documentation/json",
+          "prefix": "/movies-db"
+        }
+      },
+      {
+        "id": "movies-service",
+        "openapi": {
+          "url": "/documentation/json",
+          "prefix": "/movies-service"
+        }
+      }
+    ],
+    "refreshTimeout": 1000
+  },
+  "watch": true,
+  "plugins": {
+    "paths": [
+      {
+        "path": "./plugins",
+        "encapsulate": false
+      },
+      "./routes"
+    ],
+    "typescript": "{PLT_COMPOSER_TYPESCRIPT}",
+    "packages": [
+      {
+        "name": "@fastify/static",
+        "options": {
+          "root": "{PLT_ROOT}/{PLT_COMPOSER_FST_PLUGIN_STATIC_ROOT}",
+          "prefix": "{PLT_COMPOSER_FST_PLUGIN_STATIC_PREFIX}",
+          "schemaHide": "{PLT_COMPOSER_FST_PLUGIN_STATIC_SCHEMA_HIDE}"
+        }
+      }
+    ]
+  }
+}
