@@ -5,7 +5,8 @@ const fp = require('fastify-plugin')
 
 /** @param {import('fastify').FastifyInstance} fastify */
 module.exports = fp(async function (fastify, opts) {
-  fastify.decorate('example', 'foobar2')
+  fastify.log.info({ example: fastify.example }, 'example2 plugin')
 }, {
-  name: "example"
+  name: "example2",
+  dependencies: ['example']
 })

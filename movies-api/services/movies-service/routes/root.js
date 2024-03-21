@@ -7,7 +7,22 @@ module.exports = async function (fastify, opts) {
     return { hello: fastify.example }
   })
 
-  fastify.get('/upperMovies', async (request, reply) => {
+  fastify.get('/upperMovies', {
+    schema: {
+      response: {
+        200: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'number' },
+              title: { type: 'string' }
+            }
+          }
+        }
+      }
+    }
+  }, async (request, reply) => {
     const movies = await request.moviesDb.getMovies()
     return movies.map((movie) => {
       return {
